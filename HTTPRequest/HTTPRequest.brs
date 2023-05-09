@@ -118,17 +118,17 @@ sub externalRequest()
 end sub
 
 sub newToken()
-	Print "Startup: Requesting new tokens"
+	'Print "Startup: Requesting new tokens"
 	topParams = m.top.params
 	sceneObj = m.top.getScene()
 	AppCMS = sceneObj.AppCMS
 	tokens = GlobalDataUtils_get("tokens")
 	apiBaseUrl = m.top.getScene().APPCMS.main.apiBaseUrl
 	if tokens.refreshToken <> invalid:
-		Print "Startup: New Tokens - refresh token valid"
+		'Print "Startup: New Tokens - refresh token valid"
 		requestUri = apiBaseUrl + "/identity/refresh/" + tokens.refreshToken
 	else:
-		Print "Startup: New Tokens - refresh token invalid"
+		'Print "Startup: New Tokens - refresh token invalid"
 		requestUri = apiBaseUrl + "/identity/anonymous-token?site=" + tokens.internalName
 	end if
 
@@ -154,7 +154,7 @@ sub newToken()
 	json = ParseJson(responseStr)
 
     if json <> invalid
-		Print "Startup: New Tokens - response valid: " json
+		'Print "Startup: New Tokens - response valid: " json
         if AppCMS <> invalid and AppCMS.user <> invalid:
             AppCMS.user.authorizationToken = json.authorizationToken
             RegistryService_Write(tokens.internalName, "user", AppCMS.user)
@@ -162,16 +162,16 @@ sub newToken()
         end if
 
         tokens.authorizationToken = json.authorizationToken
-		Print "Startup: update global tokens 3"
+		'Print "Startup: update global tokens 3"
         GlobalDataUtils_update("tokens", tokens)
 
         'Make sure the force token is emtied out.'
         m.forceToken = ""
         externalRequest()
     else
-		Print "Startup: New Tokens - response invalid"
+		'Print "Startup: New Tokens - response invalid"
         tokens.refreshToken = invalid
-		Print "Startup: update global tokens 4"
+		'Print "Startup: update global tokens 4"
         GlobalDataUtils_update("tokens", tokens)
         newToken()
     end if

@@ -44,7 +44,7 @@ sub HTTPResponseHandler(msg, requestUri)
 	'' or responseCode = 504:
 		' Failure Reason: Connection timed out after 30001 milliseconds
 		' No response body
-		Print "Startup: Response handler - Request timed out"
+		'Print "Startup: Response handler - Request timed out"
 		if topParams<>invalid and topParams.requestRetry<>invalid and topParams.requestRetry:
 			errorObj = {
 				error: true,
@@ -61,14 +61,14 @@ sub HTTPResponseHandler(msg, requestUri)
 		end if
 	else:
 		failureReason = msg.GetFailureReason()
-		Print Substitute("Startup: Response handler - failure reason: {0}. Code: {1}", failureReason, responseCode.ToStr())
-		Print "Startup: Response handler - failure response: " response
-		Print "Startup: Response handler - failure params: " topParams
+		'Print Substitute("Startup: Response handler - failure reason: {0}. Code: {1}", failureReason, responseCode.ToStr())
+		'Print "Startup: Response handler - failure response: " response
+		'Print "Startup: Response handler - failure params: " topParams
 		if (responseCode = 401) AND not requestUri.instr("identity/refresh") >= 0
-			Print "Startup: Tokens unauthorized"
+			'Print "Startup: Tokens unauthorized"
 			newToken()
 		else if response.instr("expired") >= 0
-			Print "Startup: Tokens expired"
+			'Print "Startup: Tokens expired"
 			newToken()
 		else
 			if json = invalid then json = {}
