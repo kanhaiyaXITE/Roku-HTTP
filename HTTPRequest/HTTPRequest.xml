@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HTTPRequest" extends="Task">
+	<interface>
+		<field id="json" type="assocarray" alwaysNotify="true" />
+		<field id="errorObj" type="assocarray" alwaysNotify="true" />
+		<field id="params" type="assocarray" alwaysNotify="true" />
+		<function name="setParams" />
+	</interface>
+	<script type="text/brightscript" uri="pkg:/components/appcms/tools/HTTPRequest/HTTPRequest.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/tools/HTTPRequest/HTTPResponseHandler.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/common/utils.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/common/tools.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/config/config.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/tools/ACParser/ACParser.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/tools/XMLParser/XMLParser.brs" />
+	<script type="text/brightscript" uri="pkg:/components/appcms/tools/ACParser/TrayContentParser.brs" />
+	<script type="text/brightscript" uri="pkg:/source/support/ContentDataUtils.brs" />
+	<script type="text/brightscript" uri="pkg:/source/support/GlobalDataUtils.brs" />
+	<script type="text/brightscript" uri="pkg:/source/support/RegistryService.brs" />
+</component>
